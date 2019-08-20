@@ -1,10 +1,19 @@
 import React, { Fragment, useState } from 'react';
+import Weather from './Weather';
 
 const Form = () => {
   const API_KEY = 'b2a12e61da773f976f2198048e736315';
 
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
+  const [info, setInfo] = useState({
+    temperature: null,
+    city: null,
+    country: null,
+    humidity: null,
+    description: null,
+    error: null
+  });
 
   const getWeather = async e => {
     e.preventDefault();
@@ -13,6 +22,14 @@ const Form = () => {
     );
     const data = await api_call.json();
     console.log(data);
+    setInfo({
+      temperature: data.main.temp,
+      city: data.name,
+      country: data.sys.country,
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      error: ''
+    });
   };
   return (
     <Fragment>
@@ -36,6 +53,7 @@ const Form = () => {
         <button>Get Weather</button>
       </form>
       {/* search form */}
+      <Weather temp={info} />
     </Fragment>
   );
 };
