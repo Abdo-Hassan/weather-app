@@ -1,6 +1,3 @@
-/* html {
-} */
-
 .App {
   text-align: center;
   background: url('./components/bg.jpg') center center no-repeat;
@@ -8,4 +5,5 @@
   width: 100%;
   min-height: 757px;
   color: #fff;
+  padding: 40px 0;
 }

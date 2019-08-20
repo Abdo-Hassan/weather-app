@@ -21,26 +21,8 @@ const Form = () => {
       `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
     const data = await api_call.json();
-    if (city & country) {
-      setInfo({
-        temperature: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.main.humidity,
-        description: data.weather[0].description,
-        error: null
-      });
-    } else {
-      setInfo({
-        temperature: null,
-        city: null,
-        country: null,
-        humidity: null,
-        description: null,
-        error: 'Please Enter Your Data'
-      });
-    }
-    //  setInfo({
+    // if (city & country) {
+    //   setInfo({
     //     temperature: data.main.temp,
     //     city: data.name,
     //     country: data.sys.country,
@@ -48,27 +30,66 @@ const Form = () => {
     //     description: data.weather[0].description,
     //     error: null
     //   });
+    // } else {
+    //   setInfo({
+    //     temperature: null,
+    //     city: null,
+    //     country: null,
+    //     humidity: null,
+    //     description: null,
+    //     error: 'Please Enter Your Data'
+    //   });
+    // }
+    setInfo({
+      temperature: data.main.temp,
+      city: data.name,
+      country: data.sys.country,
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      error: null
+    });
   };
   return (
     <Fragment>
       {/* search form */}
       <form onSubmit={getWeather}>
-        <div>
+        <div className='input-group mb-3'>
+          <div className='input-group-prepend'>
+            <span className='input-group-text' id='inputGroup-sizing-default'>
+              City
+            </span>
+          </div>
           <input
             type='text'
-            placeholder='city'
+            className='form-control'
+            aria-label='Default'
+            aria-describedby='inputGroup-sizing-default'
+            // value={city}
             value={city}
             onChange={e => setCity(e.target.value)}
+            placeholder='Enter your city'
             autoFocus
           />
+        </div>
+
+        <div className='input-group mb-3'>
+          <div className='input-group-prepend'>
+            <span className='input-group-text' id='inputGroup-sizing-default'>
+              Country
+            </span>
+          </div>
           <input
             type='text'
-            placeholder='country'
+            className='form-control'
+            aria-label='Default'
+            aria-describedby='inputGroup-sizing-default'
+            // value={country}
             value={country}
             onChange={e => setCountry(e.target.value)}
+            placeholder='Enter your country'
           />
         </div>
-        <button>Get Weather</button>
+        <button className='btn btn-success btn-lg'>Get Weather</button>
       </form>
       {/* search form */}
       <Weather temp={info} />
