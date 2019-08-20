@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import Titles from './components/Titles';
+import Header from './components/Header';
 import Form from './components/Form';
-import Weather from './components/Weather';
 
 function App() {
   return (
     <div className='App'>
-      <Titles />
+      <Header />
       <Form />
     </div>
   );

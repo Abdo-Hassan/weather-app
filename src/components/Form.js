@@ -21,15 +21,33 @@ const Form = () => {
       `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
     const data = await api_call.json();
-    console.log(data);
-    setInfo({
-      temperature: data.main.temp,
-      city: data.name,
-      country: data.sys.country,
-      humidity: data.main.humidity,
-      description: data.weather[0].description,
-      error: ''
-    });
+    if (city & country) {
+      setInfo({
+        temperature: data.main.temp,
+        city: data.name,
+        country: data.sys.country,
+        humidity: data.main.humidity,
+        description: data.weather[0].description,
+        error: null
+      });
+    } else {
+      setInfo({
+        temperature: null,
+        city: null,
+        country: null,
+        humidity: null,
+        description: null,
+        error: 'Please Enter Your Data'
+      });
+    }
+    //  setInfo({
+    //     temperature: data.main.temp,
+    //     city: data.name,
+    //     country: data.sys.country,
+    //     humidity: data.main.humidity,
+    //     description: data.weather[0].description,
+    //     error: null
+    //   });
   };
   return (
     <Fragment>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Titles = () => {
+const Header = () => {
   return (
     <div>
       <h1>Weather Finder</h1>
@@ -9,4 +9,4 @@ const Titles = () => {
   );
 };
 
-export default Titles;
+export default Header;
