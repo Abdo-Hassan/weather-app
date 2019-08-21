@@ -25,28 +25,28 @@ const WeatherContextProvider = props => {
     );
     const data = await api_call.json();
 
-    const weather = {
-      temperature: data.main.temp,
-      city: data.name,
-      country: data.sys.country,
-      humidity: data.main.humidity,
-      description: data.weather[0].description,
-      error: null
-    };
-    dispatch({ type: 'GET_WEATHER', payload: weather });
+    try {
+      const weather = {
+        temperature: data.main.temp,
+        city: data.name,
+        country: data.sys.country,
+        humidity: data.main.humidity,
+        description: data.weather[0].description,
+        error: null
+      };
 
-    // const weatherError = {
-    //   temperature: null,
-    //   city: null,
-    //   country: null,
-    //   humidity: null,
-    //   description: null,
-    //   error: 'Please Enter your data'
-    // };
-    // try {
-    // } catch (error) {
-    //   dispatch({ type: 'ERROR_WEATHER', payload: weatherError });
-    // }
+      dispatch({ type: 'GET_WEATHER', payload: weather });
+    } catch (error) {
+      const weatherError = {
+        temperature: null,
+        city: null,
+        country: null,
+        humidity: null,
+        description: null,
+        error: 'Please Enter your data'
+      };
+      dispatch({ type: 'ERROR_WEATHER', payload: weatherError });
+    }
   };
 
   return (

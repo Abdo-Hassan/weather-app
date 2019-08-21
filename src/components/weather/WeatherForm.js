@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react';
-import { WeatherContext } from './context/WeatherContext';
+import { WeatherContext } from '../context/WeatherContext';
 
 const WeatherForm = () => {
   const [info, setInfo] = useState({
