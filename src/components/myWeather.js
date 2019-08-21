@@ -1,7 +1,7 @@
 import React from 'react';
 
-const yourWeather = () => {
+const MyWeather = () => {
   return <div />;
 };
 
-export default yourWeather;
+export default MyWeather;

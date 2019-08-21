@@ -4,24 +4,22 @@ import weatherReducer from './weatherReducer';
 export const WeatherContext = createContext();
 
 const WeatherContextProvider = props => {
-  const API_KEY = 'b2a12e61da773f976f2198048e736315';
   const initState = {
-    weatherInfo: [
-      {
-        temperature: null,
-        city: null,
-        country: null,
-        humidity: null,
-        description: null,
-        error: null
-      }
-    ]
+    info: {
+      temperature: null,
+      city: null,
+      country: null,
+      humidity: null,
+      description: null,
+      error: null
+    }
   };
 
   const [state, dispatch] = useReducer(weatherReducer, initState);
 
   // get weather info from api
-  const getWeather = async e => {
+  const getWeather = async info => {
+    const API_KEY = 'b2a12e61da773f976f2198048e736315';
     const api_call = await fetch(
       `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${
         state.city
@@ -56,12 +54,12 @@ const WeatherContextProvider = props => {
   return (
     <WeatherContext.Provider
       value={{
-        temperature: state.weatherInfo.temperature,
-        city: state.weatherInfo.city,
-        country: state.weatherInfo.country,
-        humidity: state.weatherInfo.humidity,
-        description: state.weatherInfo.description,
-        error: state.weatherInfo.error,
+        temperature: state.info.temperature,
+        city: state.info.city,
+        country: state.info.country,
+        humidity: state.info.humidity,
+        description: state.info.description,
+        error: state.info.error,
         getWeather
       }}
     >

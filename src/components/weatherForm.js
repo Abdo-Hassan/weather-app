@@ -2,12 +2,14 @@ import React, { Fragment, useState, useContext } from 'react';
 import Weather from './Weather';
 import { WeatherContext } from './context/WeatherContext';
 
-const weatherForm = () => {
+const WeatherForm = () => {
   const [info, setInfo] = useState({
-    city: 'null',
-    country: 'null'
+    city: '',
+    country: ''
   });
-  const { city, country, getWeather } = useContext(WeatherContext);
+
+  const { getWeather } = useContext(WeatherContext);
+  const { city, country } = info;
 
   const onChange = e => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -15,7 +17,7 @@ const weatherForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    getWeather();
+    getWeather(info);
   };
 
   return (
@@ -66,4 +68,4 @@ const weatherForm = () => {
   );
 };
 
-export default weatherForm;
+export default WeatherForm;

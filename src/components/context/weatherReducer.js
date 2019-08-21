@@ -3,12 +3,12 @@ export default (state, action) => {
     case 'GET_WEATHER':
       return {
         ...state,
-        weatherInfo: action.payload
+        info: action.payload
       };
     case 'ERROR_WEATHER':
       return {
         ...state,
-        weatherInfo: action.payload
+        info: action.payload
       };
     default:
       return state;
