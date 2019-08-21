@@ -1,50 +1,27 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import Weather from './Weather';
+import { WeatherContext } from './context/WeatherContext';
 
-const Form = () => {
-  const API_KEY = 'b2a12e61da773f976f2198048e736315';
-
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
+const weatherForm = () => {
   const [info, setInfo] = useState({
-    temperature: null,
-    city: null,
-    country: null,
-    humidity: null,
-    description: null,
-    error: null
+    city: 'null',
+    country: 'null'
   });
+  const { city, country, getWeather } = useContext(WeatherContext);
 
-  const getWeather = async e => {
-    e.preventDefault();
-    const api_call = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
-    );
-    const data = await api_call.json();
-    if (city && country) {
-      setInfo({
-        temperature: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.main.humidity,
-        description: data.weather[0].description,
-        error: null
-      });
-    } else {
-      setInfo({
-        temperature: null,
-        city: null,
-        country: null,
-        humidity: null,
-        description: null,
-        error: 'Please Enter Your Data'
-      });
-    }
+  const onChange = e => {
+    setInfo({ ...info, [e.target.name]: e.target.value });
   };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    getWeather();
+  };
+
   return (
     <Fragment>
       {/* search form */}
-      <form onSubmit={getWeather}>
+      <form onSubmit={onSubmit}>
         <div className='input-group mb-3'>
           <div className='input-group-prepend'>
             <span className='input-group-text' id='inputGroup-sizing-default'>
@@ -56,9 +33,9 @@ const Form = () => {
             className='form-control'
             aria-label='Default'
             aria-describedby='inputGroup-sizing-default'
-            // value={city}
+            name='city'
             value={city}
-            onChange={e => setCity(e.target.value)}
+            onChange={onChange}
             placeholder='Enter your city'
             autoFocus
           />
@@ -75,9 +52,9 @@ const Form = () => {
             className='form-control'
             aria-label='Default'
             aria-describedby='inputGroup-sizing-default'
-            // value={country}
+            name='country'
             value={country}
-            onChange={e => setCountry(e.target.value)}
+            onChange={onChange}
             placeholder='Enter your country'
           />
         </div>
@@ -89,4 +66,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default weatherForm;
