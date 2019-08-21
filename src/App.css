@@ -1,3 +1,6 @@
+/* import bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
 /* app component */
 .App {
   text-align: center;
@@ -22,3 +25,10 @@
   top: 50px;
 }
 /* weather wrapper component */
+
+/* weather data component */
+.dataBadge {
+  margin-bottom: 0;
+  padding: 10px 15px;
+}
+/* weather data component */

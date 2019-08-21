@@ -10,38 +10,53 @@ const Weather = () => {
     humidity,
     error
   } = useContext(WeatherContext);
+
   return (
-    <div className='mt-5'>
-      {city && (
-        <div className='d-flex justify-content-around'>
-          <span>Your city is : </span>
-          <span>{city}</span>
-        </div>
-      )}
-      {country && (
-        <div className='d-flex justify-content-around'>
-          <span>Your country is : </span>
-          <span>{country}</span>
-        </div>
-      )}
-      {temperature && (
-        <div className='d-flex justify-content-around'>
-          <span>temperature in {city} is : </span>
-          <span>{temperature}</span>
-        </div>
-      )}
-      {description && (
-        <div className='d-flex justify-content-around'>
-          <span>Your description is : </span>
-          <span>{description}</span>
-        </div>
-      )}
-      {humidity && (
-        <div className='d-flex justify-content-around'>
-          <span> humidity in {city} is : </span>
-          <span>{humidity}</span>
-        </div>
-      )}
+    <div className='mt-5 text-dark'>
+      <ul className='list-group'>
+        {city && (
+          <li className='list-group-item d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-around'>
+              <span>Your city is : </span>
+            </div>
+            <span className='badge badge-danger dataBadge'>{city}</span>
+          </li>
+        )}
+        {country && (
+          <li className='list-group-item d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-around'>
+              <span>Your country is : </span>
+            </div>
+            <span className='badge badge-danger dataBadge'>{country}</span>
+          </li>
+        )}
+        {temperature && (
+          <li className='list-group-item d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-around'>
+              <span>temperature in {city} is : </span>
+            </div>
+            <span className='badge badge-danger dataBadge'>
+              {temperature} C
+            </span>
+          </li>
+        )}
+        {description && (
+          <li className='list-group-item d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-around'>
+              <span>Weather condition is : </span>
+            </div>
+            <span className='badge badge-danger dataBadge'>{description}</span>
+          </li>
+        )}
+        {humidity && (
+          <li className='list-group-item d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-around'>
+              <span> humidity in {city} is : </span>
+            </div>
+            <span className='badge badge-danger dataBadge'>{humidity} %</span>
+          </li>
+        )}
+      </ul>
       {error && <div className='alert alert-danger mt-5'>{error}</div>}
     </div>
   );
