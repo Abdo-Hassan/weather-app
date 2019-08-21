@@ -17,6 +17,7 @@ const WeatherForm = () => {
   const onSubmit = e => {
     e.preventDefault();
     getWeather(city, country);
+    setInfo({ city: '', country: '' });
   };
 
   return (
