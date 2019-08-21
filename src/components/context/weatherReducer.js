@@ -5,11 +5,11 @@ export default (state, action) => {
         ...state,
         info: action.payload
       };
-    case 'ERROR_WEATHER':
-      return {
-        ...state,
-        info: action.payload
-      };
+    // case 'ERROR_WEATHER':
+    //   return {
+    //     ...state,
+    //     info: action.payload
+    //   };
     default:
       return state;
   }

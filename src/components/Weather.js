@@ -1,41 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { WeatherContext } from './context/WeatherContext';
 
-const Weather = ({ temp }) => {
+const Weather = () => {
+  const {
+    city,
+    country,
+    temperature,
+    description,
+    humidity,
+    error
+  } = useContext(WeatherContext);
   return (
     <div className='mt-5'>
-      {temp.city && (
+      {city && (
         <div className='d-flex justify-content-around'>
           <span>Your city is : </span>
-          <span>{temp.city}</span>
+          <span>{city}</span>
         </div>
       )}
-      {temp.country && (
+      {country && (
         <div className='d-flex justify-content-around'>
           <span>Your country is : </span>
-          <span>{temp.country}</span>
+          <span>{country}</span>
         </div>
       )}
-      {temp.temperature && (
+      {temperature && (
         <div className='d-flex justify-content-around'>
-          <span>temperature in {temp.city} is : </span>
-          <span>{temp.temperature}</span>
+          <span>temperature in {city} is : </span>
+          <span>{temperature}</span>
         </div>
       )}
-      {temp.description && (
+      {description && (
         <div className='d-flex justify-content-around'>
           <span>Your description is : </span>
-          <span>{temp.description}</span>
+          <span>{description}</span>
         </div>
       )}
-      {temp.humidity && (
+      {humidity && (
         <div className='d-flex justify-content-around'>
-          <span> humidity in {temp.city} is : </span>
-          <span>{temp.humidity}</span>
+          <span> humidity in {city} is : </span>
+          <span>{humidity}</span>
         </div>
       )}
-      {temp.error && (
-        <div className='alert alert-danger mt-5'>{temp.error}</div>
-      )}
+      {error && <div className='alert alert-danger mt-5'>{error}</div>}
     </div>
   );
 };

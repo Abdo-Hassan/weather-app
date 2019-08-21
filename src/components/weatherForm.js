@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useContext } from 'react';
-import Weather from './Weather';
 import { WeatherContext } from './context/WeatherContext';
 
 const WeatherForm = () => {
@@ -17,7 +16,7 @@ const WeatherForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    getWeather(info);
+    getWeather(city, country);
   };
 
   return (
@@ -63,7 +62,6 @@ const WeatherForm = () => {
         <button className='btn btn-success btn-lg'>Get Weather</button>
       </form>
       {/* search form */}
-      <Weather temp={info} />
     </Fragment>
   );
 };

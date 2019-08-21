@@ -18,12 +18,10 @@ const WeatherContextProvider = props => {
   const [state, dispatch] = useReducer(weatherReducer, initState);
 
   // get weather info from api
-  const getWeather = async info => {
+  const getWeather = async (city, country) => {
     const API_KEY = 'b2a12e61da773f976f2198048e736315';
     const api_call = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${
-        state.city
-      },${state.country}&appid=${API_KEY}&units=metric`
+      `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
     const data = await api_call.json();
 
@@ -35,20 +33,20 @@ const WeatherContextProvider = props => {
       description: data.weather[0].description,
       error: null
     };
+    dispatch({ type: 'GET_WEATHER', payload: weather });
 
-    const weatherError = {
-      temperature: null,
-      city: null,
-      country: null,
-      humidity: null,
-      description: null,
-      error: 'Please Enter your data'
-    };
-    try {
-      dispatch({ type: 'GET_WEATHER', payload: weather });
-    } catch (error) {
-      dispatch({ type: 'ERROR_WEATHER', payload: weatherError });
-    }
+    // const weatherError = {
+    //   temperature: null,
+    //   city: null,
+    //   country: null,
+    //   humidity: null,
+    //   description: null,
+    //   error: 'Please Enter your data'
+    // };
+    // try {
+    // } catch (error) {
+    //   dispatch({ type: 'ERROR_WEATHER', payload: weatherError });
+    // }
   };
 
   return (
