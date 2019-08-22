@@ -54,29 +54,31 @@ const WeatherContextProvider = props => {
     }
   };
 
-  // get the user weather data
-  const getWeatherLocation = async () => {
-    const API_KEY = 'b2a12e61da773f976f2198048e736315';
-    // get the user current location
-    const location = navigator && navigator.geolocation;
-    if (location) {
-      location.getCurrentPosition(position => {
-        const lat = position.coords.latitude;
-        const long = position.coords.longitude;
-        dispatch({ type: 'GET_USER_LOCATION', payload: lat, long });
+  // get the user current location
+  const getUserLocation = () => {
+    const userLocation = navigator && navigator.geolocation;
+    if (userLocation) {
+      userLocation.getCurrentPosition(position => {
+        const latLong = {
+          lat: position.coords.latitude,
+          long: position.coords.longitude
+        };
+        dispatch({ type: 'GET_USER_LOCATION', payload: latLong });
       });
     }
-
-    // get the user weather data
-    const api_call = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://openweathermap.org/data/2.5/weather?lat=${
-        state.lat
-      }&lon=${state.long}&appid=${API_KEY}`
-    );
-    const data = await api_call.json();
-    const userTemp = data.main.temp;
-    dispatch({ type: 'GET_USER_WEATHER', payload: userTemp });
   };
+
+  // get the user weather data
+  // const getWeatherLocation = async (lat, long) => {
+  //   const API_KEY = 'b2a12e61da773f976f2198048e736315';
+  //   // get the user weather data
+  //   const api_call = await fetch(
+  //     `https://cors-anywhere.herokuapp.com/https://openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`
+  //   );
+  //   const data = await api_call.json();
+  //   const userTemp = data.main.temp;
+  //   dispatch({ type: 'GET_USER_WEATHER', payload: userTemp });
+  // };
 
   return (
     <WeatherContext.Provider
@@ -87,8 +89,12 @@ const WeatherContextProvider = props => {
         humidity: state.info.humidity,
         description: state.info.description,
         error: state.info.error,
+        userTemp: state.user.userTemp,
+        lat: state.user.lat,
+        long: state.user.long,
         getWeather,
-        getWeatherLocation
+        getUserLocation
+        // getWeatherLocation
       }}
     >
       {props.children}
