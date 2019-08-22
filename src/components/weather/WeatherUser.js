@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { WeatherContext } from '../context/WeatherContext';
 
 const WeatherUser = () => {
-  const { getWeatherLocation, lat, long } = useContext(WeatherContext);
-
+  const { getWeatherLocation, lat, long, userTemp } = useContext(
+    WeatherContext
+  );
+  console.log(lat, long);
   return (
     <div>
       <p className='lead'>Get your weather Date</p>
@@ -12,6 +14,7 @@ const WeatherUser = () => {
       </button>
       <p>lat : {lat}</p>
       <p>long : {long}</p>
+      <p>userTemp : {userTemp}</p>
     </div>
   );
 };
