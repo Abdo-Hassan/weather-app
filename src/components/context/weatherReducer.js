@@ -10,11 +10,11 @@ export default (state, action) => {
         ...state,
         info: action.payload
       };
-    case 'GET_USER_LOCATION':
-      return {
-        ...state,
-        user: action.payload
-      };
+    // case 'GET_USER_LOCATION':
+    //   return {
+    //     ...state,
+    //     user: action.payload
+    //   };
     case 'GET_USER_WEATHER':
       return {
         ...state,
