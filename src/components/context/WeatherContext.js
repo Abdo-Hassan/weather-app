@@ -14,10 +14,14 @@ const WeatherContextProvider = props => {
       description: null,
       error: null
     },
+    lat: '',
+    long: '',
     user: {
-      lat: '',
-      long: '',
-      userTemp: ''
+      userTemp: '',
+      userTime: '',
+      userHumidity: '',
+      usersummary: '',
+      userPressure: ''
     }
   };
 
@@ -57,7 +61,6 @@ const WeatherContextProvider = props => {
 
   const getUserWeather = async location => {
     const API_KEY = 'd96f10357e6009550c22c7568cac8979';
-    console.log(location);
     await axios
       .get(
         `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${
@@ -65,9 +68,15 @@ const WeatherContextProvider = props => {
         },${location.long}`
       )
       .then(res => {
-        console.log(res.data);
-        const userTemp = res.data.currently.temperature;
-        dispatch({ type: 'GET_USER_WEATHER', payload: userTemp });
+        const userInfo = {
+          userTemp: res.data.currently.temperature,
+          userTime: res.data.currently.time,
+          userHumidity: res.data.currently.humidity,
+          usersummary: res.data.currently.summary,
+          userPressure: res.data.currently.pressure
+        };
+
+        dispatch({ type: 'GET_USER_WEATHER', payload: userInfo });
       })
       .catch(err => {
         console.log(err);
@@ -89,9 +98,13 @@ const WeatherContextProvider = props => {
         humidity: state.info.humidity,
         description: state.info.description,
         error: state.info.error,
+        lat: state.lat,
+        long: state.long,
         userTemp: state.user.userTemp,
-        lat: state.user.lat,
-        long: state.user.long,
+        userTime: state.user.userTime,
+        userSummary: state.user.userSummary,
+        userPressure: state.user.userPressure,
+        userHumidity: state.user.userHumidity,
         getWeather,
         getWeatherLocation,
         getUserWeather

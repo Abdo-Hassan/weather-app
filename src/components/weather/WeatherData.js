@@ -17,7 +17,7 @@ const Weather = () => {
         {city && (
           <li className='list-group-item d-flex justify-content-between align-items-center'>
             <div className='d-flex justify-content-around'>
-              <span>Your city is : </span>
+              <span>city is : </span>
             </div>
             <span className='badge badge-danger dataBadge'>{city}</span>
           </li>
@@ -25,7 +25,7 @@ const Weather = () => {
         {country && (
           <li className='list-group-item d-flex justify-content-between align-items-center'>
             <div className='d-flex justify-content-around'>
-              <span>Your country is : </span>
+              <span>country is : </span>
             </div>
             <span className='badge badge-danger dataBadge'>{country}</span>
           </li>
