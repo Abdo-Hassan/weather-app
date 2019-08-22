@@ -9,10 +9,10 @@ const WeatherWrapper = () => {
         <div className='col-md-5'>
           <WeatherUser />
         </div>
-        <div className='col-md-7'>
+        {/* <div className='col-md-7'>
           <WeatherForm />
           <WeatherData />
-        </div>
+        </div> */}
       </div>
     </div>
   );

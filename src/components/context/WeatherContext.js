@@ -55,34 +55,29 @@ const WeatherContextProvider = props => {
       });
   };
 
-  // get the user weather data
-  const getWeatherLocation = async (lat, long) => {
-    const userLocation = navigator && navigator.geolocation;
-    if (userLocation) {
-      userLocation.getCurrentPosition(position => {
-        const latLong = {
-          lat: position.coords.latitude,
-          long: position.coords.longitude
-        };
-        dispatch({ type: 'GET_USER_LOCATION', payload: latLong });
-      });
-    }
-
-    // get the user weather data
-    const API_KEY = 'b2a12e61da773f976f2198048e736315';
+  const getUserWeather = async location => {
+    const API_KEY = 'd96f10357e6009550c22c7568cac8979';
+    console.log(location);
     await axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}`
+        `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${
+          location.lat
+        },${location.long}`
       )
       .then(res => {
-        const userTemp = res.data.data.main.temp;
+        console.log(res.data);
+        const userTemp = res.data.currently.temperature;
         dispatch({ type: 'GET_USER_WEATHER', payload: userTemp });
       })
       .catch(err => {
         console.log(err);
       });
-    // const data = await api_call.json();
-    // const userTemp = data.main.temp;
+  };
+
+  // get the user location
+  const getWeatherLocation = location => {
+    dispatch({ type: 'GET_USER_LOCATION', payload: location });
+    getUserWeather(location);
   };
 
   return (
@@ -98,7 +93,8 @@ const WeatherContextProvider = props => {
         lat: state.user.lat,
         long: state.user.long,
         getWeather,
-        getWeatherLocation
+        getWeatherLocation,
+        getUserWeather
       }}
     >
       {props.children}

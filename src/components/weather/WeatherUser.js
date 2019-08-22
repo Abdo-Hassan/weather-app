@@ -2,19 +2,26 @@ import React, { useContext } from 'react';
 import { WeatherContext } from '../context/WeatherContext';
 
 const WeatherUser = () => {
-  const { getWeatherLocation, lat, long, userTemp } = useContext(
+  const { getWeatherLocation, userTemp, lat, long } = useContext(
     WeatherContext
   );
-  console.log(lat, long);
+
+  const setLocation = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      getWeatherLocation({
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      });
+    });
+  };
+
   return (
     <div>
       <p className='lead'>Get your weather Date</p>
-      <button onClick={() => getWeatherLocation(lat, long)}>
-        Get your Weather
-      </button>
+      <button onClick={setLocation}>Get your Weather</button>
       <p>lat : {lat}</p>
       <p>long : {long}</p>
-      <p>userTemp : {userTemp}</p>
+      <p>user Temp{userTemp}</p>
     </div>
   );
 };
