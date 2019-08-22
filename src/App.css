@@ -8,6 +8,10 @@
   color: #fff;
   padding: 40px 0;
 }
+
+.list-group li {
+  background-color: #ffffff33 !important;
+}
 /* app component */
 
 /* header component */

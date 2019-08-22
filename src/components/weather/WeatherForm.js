@@ -60,7 +60,7 @@ const WeatherForm = () => {
             placeholder='Enter your country'
           />
         </div>
-        <button className='btn btn-success btn-lg'>Search Weather</button>
+        <button className='btn btn-dark btn-lg'>Search Weather</button>
       </form>
       {/* search form */}
     </Fragment>

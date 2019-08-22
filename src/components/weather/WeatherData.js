@@ -12,7 +12,7 @@ const Weather = () => {
   } = useContext(WeatherContext);
 
   return (
-    <div className='mt-5 text-dark'>
+    <div className='mt-5'>
       <ul className='list-group'>
         {city && (
           <li className='list-group-item d-flex justify-content-between align-items-center'>

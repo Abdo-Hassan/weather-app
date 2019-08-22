@@ -23,10 +23,10 @@ const WeatherUser = () => {
   return (
     <div>
       <h2 className='lead'>Get your weather Date</h2>
-      <button onClick={setLocation} className='btn btn-success btn-lg m-4'>
-        Get your Weather Data
+      <button onClick={setLocation} className='btn btn-dark btn-lg m-4'>
+        Get Weather
       </button>
-      <div className='text-dark' style={{ marginTop: 76 }}>
+      <div style={{ marginTop: 76 }}>
         <ul className='list-group'>
           {userTemp && (
             <li className='list-group-item d-flex justify-content-between align-items-center'>
