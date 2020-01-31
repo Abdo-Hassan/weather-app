@@ -15,43 +15,43 @@ const Weather = () => {
     <div className='mt-5'>
       <ul className='list-group'>
         {city && (
-          <li className='list-group-item d-flex justify-content-between align-items-center'>
+          <li className='list-group-item d-flex justify-content-between align-items-center weather-list'>
             <div className='d-flex justify-content-around'>
-              <span>city is : </span>
+              <span>City : </span>
             </div>
             <span className='badge badge-danger dataBadge'>{city}</span>
           </li>
         )}
         {country && (
-          <li className='list-group-item d-flex justify-content-between align-items-center'>
+          <li className='list-group-item d-flex justify-content-between align-items-center weather-list'>
             <div className='d-flex justify-content-around'>
-              <span>country is : </span>
+              <span>Country : </span>
             </div>
             <span className='badge badge-danger dataBadge'>{country}</span>
           </li>
         )}
         {temperature && (
-          <li className='list-group-item d-flex justify-content-between align-items-center'>
+          <li className='list-group-item d-flex justify-content-between align-items-center weather-list'>
             <div className='d-flex justify-content-around'>
-              <span>temperature in {city} is : </span>
+              <span>Temperature in {city} : </span>
             </div>
             <span className='badge badge-danger dataBadge'>
-              {temperature} C
+              {Math.ceil(temperature)} C
             </span>
           </li>
         )}
         {description && (
-          <li className='list-group-item d-flex justify-content-between align-items-center'>
+          <li className='list-group-item d-flex justify-content-between align-items-center weather-list'>
             <div className='d-flex justify-content-around'>
-              <span>Weather condition is : </span>
+              <span>Weather condition : </span>
             </div>
             <span className='badge badge-danger dataBadge'>{description}</span>
           </li>
         )}
         {humidity && (
-          <li className='list-group-item d-flex justify-content-between align-items-center'>
+          <li className='list-group-item d-flex justify-content-between align-items-center weather-list'>
             <div className='d-flex justify-content-around'>
-              <span> humidity in {city} is : </span>
+              <span> Humidity in {city} : </span>
             </div>
             <span className='badge badge-danger dataBadge'>{humidity} %</span>
           </li>

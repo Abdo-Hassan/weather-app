@@ -6,30 +6,46 @@
   width: 100%;
   min-height: 757px;
   color: #fff;
-  padding: 40px 0;
+  padding: 70px 0 20px;
 }
 
 .list-group li {
   background-color: #ffffff33 !important;
 }
-/* app component */
 
 /* header component */
 .headerContainer {
   margin-bottom: 50px;
 }
-/* header component */
 
 /* weather wrapper component */
 .wrapper {
   position: relative;
-  top: 50px;
 }
-/* weather wrapper component */
-
 /* weather data component */
 .dataBadge {
   margin-bottom: 0;
   padding: 10px 15px;
 }
-/* weather data component */
+
+@media only screen and (max-width: 600px) {
+  .headerContainer {
+    margin-bottom: 0px;
+  }
+
+  .headerContainer h1 {
+    font-size: 40px;
+  }
+  .headerContainer p {
+    font-size: 14px;
+  }
+  .wrapper button {
+    font-size: 17px;
+  }
+  .wrapper .user-weather {
+    margin: 20px 0;
+  }
+  .wrapper .weather-list {
+    padding: 13px 10px;
+  }
+}
