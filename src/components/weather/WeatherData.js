@@ -36,7 +36,7 @@ const Weather = () => {
               <span>Temperature in {city} : </span>
             </div>
             <span className='badge badge-danger dataBadge'>
-              {Math.ceil(temperature)} C
+              {Math.ceil(temperature - 273.15)} C
             </span>
           </li>
         )}

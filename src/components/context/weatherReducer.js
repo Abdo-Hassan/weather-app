@@ -13,8 +13,8 @@ export default (state, action) => {
     case 'GET_USER_LOCATION':
       return {
         ...state,
-        long: action.payload.long,
-        lat: action.payload.lat
+        lat: action.payload.lat,
+        lon: action.payload.long
       };
     case 'GET_USER_WEATHER':
       return {

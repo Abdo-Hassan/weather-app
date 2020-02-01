@@ -4,18 +4,16 @@ import { WeatherContext } from '../context/WeatherContext';
 const WeatherUser = () => {
   const {
     getWeatherLocation,
-    userTemp,
-    userTime,
-    userSummary,
-    userPressure,
-    userHumidity
+    temperatureUser,
+    descriptionUser,
+    humidityUser
   } = useContext(WeatherContext);
 
   const setLocation = () => {
     navigator.geolocation.getCurrentPosition(position => {
       getWeatherLocation({
         lat: position.coords.latitude,
-        long: position.coords.longitude
+        lon: position.coords.longitude
       });
     });
   };
@@ -28,51 +26,33 @@ const WeatherUser = () => {
       </button>
       <div className='user-weather'>
         <ul className='list-group'>
-          {userTemp && (
+          {temperatureUser && (
             <li className='list-group-item d-flex justify-content-between align-items-center'>
               <div className='d-flex justify-content-around'>
                 <span> Temperature : </span>
               </div>
               <span className='badge badge-primary dataBadge'>
-                {Math.ceil(((userTemp - 32) * 5) / 9)} C
+                {Math.ceil(temperatureUser - 273.15)} C
               </span>
             </li>
           )}
-          {userTime && (
+          {descriptionUser && (
             <li className='list-group-item d-flex justify-content-between align-items-center'>
               <div className='d-flex justify-content-around'>
-                <span> Time : </span>
-              </div>
-              <span className='badge badge-primary dataBadge'>{userTime}</span>
-            </li>
-          )}
-          {userSummary && (
-            <li className='list-group-item d-flex justify-content-between align-items-center'>
-              <div className='d-flex justify-content-around'>
-                <span> Weather summary : </span>
+                <span> Weather condition : </span>
               </div>
               <span className='badge badge-primary dataBadge'>
-                {userSummary}
+                {descriptionUser}
               </span>
             </li>
           )}
-          {userPressure && (
-            <li className='list-group-item d-flex justify-content-between align-items-center'>
-              <div className='d-flex justify-content-around'>
-                <span>Weather pressure : </span>
-              </div>
-              <span className='badge badge-primary dataBadge'>
-                {userPressure}
-              </span>
-            </li>
-          )}
-          {userHumidity && (
+          {humidityUser && (
             <li className='list-group-item d-flex justify-content-between align-items-center'>
               <div className='d-flex justify-content-around'>
                 <span> Humidity : </span>
               </div>
               <span className='badge badge-primary dataBadge'>
-                {userHumidity} %
+                {humidityUser} %
               </span>
             </li>
           )}

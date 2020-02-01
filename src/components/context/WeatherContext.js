@@ -14,25 +14,22 @@ const WeatherContextProvider = props => {
       description: null,
       error: null
     },
-    lat: '',
-    long: '',
     user: {
-      userTemp: '',
-      userTime: '',
-      userHumidity: '',
-      usersummary: '',
-      userPressure: ''
-    }
+      temperature: null,
+      humidity: null,
+      description: null
+    },
+    lat: '',
+    long: ''
   };
 
   const [state, dispatch] = useReducer(weatherReducer, initState);
-
   // get weather info from api
   const getWeather = async (city, country) => {
     const API_KEY = 'b2a12e61da773f976f2198048e736315';
     await axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`
       )
       .then(res => {
         const data = res.data;
@@ -59,27 +56,24 @@ const WeatherContextProvider = props => {
       });
   };
 
-  const getUserWeather = async location => {
-    const API_KEY = 'd96f10357e6009550c22c7568cac8979';
+  const getUserWeather = async ({ lat, lon }) => {
+    const API_KEY = 'b2a12e61da773f976f2198048e736315';
     await axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${API_KEY}/${
-          location.lat
-        },${location.long}`
+        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
       )
       .then(res => {
-        const userInfo = {
-          userTemp: res.data.currently.temperature,
-          userTime: res.data.currently.time,
-          userHumidity: res.data.currently.humidity,
-          usersummary: res.data.currently.summary,
-          userPressure: res.data.currently.pressure
+        const data = res.data;
+        const weather = {
+          temperature: data.main.temp,
+          humidity: data.main.humidity,
+          description: data.weather[0].description
         };
-
-        dispatch({ type: 'GET_USER_WEATHER', payload: userInfo });
+        dispatch({ type: 'GET_USER_WEATHER', payload: weather });
+        console.log(data);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.message);
       });
   };
 
@@ -92,19 +86,17 @@ const WeatherContextProvider = props => {
   return (
     <WeatherContext.Provider
       value={{
-        temperature: state.info.temperature,
         city: state.info.city,
         country: state.info.country,
+        error: state.info.error,
+        temperature: state.info.temperature,
         humidity: state.info.humidity,
         description: state.info.description,
-        error: state.info.error,
+        temperatureUser: state.user.temperature,
+        humidityUser: state.user.humidity,
+        descriptionUser: state.user.description,
         lat: state.lat,
         long: state.long,
-        userTemp: state.user.userTemp,
-        userTime: state.user.userTime,
-        userSummary: state.user.userSummary,
-        userPressure: state.user.userPressure,
-        userHumidity: state.user.userHumidity,
         getWeather,
         getWeatherLocation,
         getUserWeather

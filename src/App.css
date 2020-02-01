@@ -45,7 +45,16 @@
   .wrapper .user-weather {
     margin: 20px 0;
   }
+  .wrapper .user-weather li {
+    padding: 13px 10px;
+  }
   .wrapper .weather-list {
     padding: 13px 10px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .wrapper .user-weather {
+    margin: 20px 0;
   }
 }

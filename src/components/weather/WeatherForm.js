@@ -27,28 +27,12 @@ const WeatherForm = () => {
         <div className='input-group mb-3'>
           <div className='input-group-prepend'>
             <span className='input-group-text' id='inputGroup-sizing-default'>
-              Country
-            </span>
-          </div>
-          <input
-            type='text'
-            className='form-control'
-            aria-label='Default'
-            aria-describedby='inputGroup-sizing-default'
-            name='country'
-            value={country}
-            onChange={onChange}
-            placeholder='Enter your country'
-          />
-        </div>
-        <div className='input-group mb-3'>
-          <div className='input-group-prepend'>
-            <span className='input-group-text' id='inputGroup-sizing-default'>
               City
             </span>
           </div>
           <input
             type='text'
+            required
             className='form-control'
             aria-label='Default'
             aria-describedby='inputGroup-sizing-default'
@@ -57,6 +41,24 @@ const WeatherForm = () => {
             onChange={onChange}
             placeholder='Enter your city'
             autoFocus
+          />
+        </div>
+        <div className='input-group mb-3'>
+          <div className='input-group-prepend'>
+            <span className='input-group-text' id='inputGroup-sizing-default'>
+              Country
+            </span>
+          </div>
+          <input
+            type='text'
+            required
+            className='form-control'
+            aria-label='Default'
+            aria-describedby='inputGroup-sizing-default'
+            name='country'
+            value={country}
+            onChange={onChange}
+            placeholder='Enter your country'
           />
         </div>
         <button className='btn btn-dark btn-lg'>Search Weather</button>
