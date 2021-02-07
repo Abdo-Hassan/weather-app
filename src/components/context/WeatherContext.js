@@ -29,7 +29,7 @@ const WeatherContextProvider = props => {
     const API_KEY = 'b2a12e61da773f976f2198048e736315';
     await axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`
       )
       .then(res => {
         const data = res.data;
