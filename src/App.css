@@ -7,6 +7,8 @@
   min-height: 757px;
   color: #fff;
   padding: 70px 0 20px;
+  height : 100vh;
+  
 }
 
 .list-group li {
@@ -56,5 +58,11 @@
 @media only screen and (max-width: 800px) {
   .wrapper .user-weather {
     margin: 20px 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    height : auto;
   }
 }
